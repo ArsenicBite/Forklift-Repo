@@ -4,22 +4,60 @@ using UnityEngine;
 
 public class MyVector2 : MonoBehaviour
 {
+
     public float x, y;
+    public float nx, ny;
 
-    //properties
-    //Magnitude
-    //SquareMagnitude
-    //Angle from x-axis
-    //Angle from y-axis
+    private float _magnitude;
+    private float _squareMagnitude;
+    private float _xangle;
+    private float _yangle;
+    private float _pythagorean;
 
-    // a^2 + b^2 = c^2
-    // Magnitude = Mathf.sqrt(x^2 + y^2 + z^2) //for vector3
 
-    //Debug.Log all the properties in start
 
-    // Start is called before the first frame update
+
+    public float Magnitude
+    {
+        get { _magnitude = Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)); return _magnitude; }
+        set { 
+            float currentMag = Mathf.Sqrt(x * x + y * y);
+            x = x / currentMag * value;
+            y = y / currentMag * value;
+            _magnitude = value; 
+        }
+    }
+
+    public float SquareMagnitude
+    {
+        get { _squareMagnitude = Mathf.Pow(x, 2) + Mathf.Pow(y, 2); return _squareMagnitude; }
+        set { _squareMagnitude = value; }
+    }
+
+    public float XAngle
+    {
+        get { _xangle = Mathf.Atan2(y, x) * Mathf.Rad2Deg; return _xangle; }
+        set {_xangle = value; }
+    }
+
+    public float YAngle
+    {
+        get { _yangle = Mathf.Atan2(x, y) * Mathf.Rad2Deg; return _yangle; }
+        set { _yangle = value; }
+    }
+
     void Start()
     {
+        Debug.Log("x: " + x);
+        Debug.Log("y: " + y);
+        Debug.Log("Magnitude: " + Magnitude);
+        Debug.Log("Square Magnitude: " + SquareMagnitude);
+        Debug.Log("X Angle: " + XAngle);
+        Debug.Log("Y Angle: " + YAngle);
+
+        Magnitude = 45f;
+        Debug.Log(x);
+        Debug.Log(y);
     }
 
 }
